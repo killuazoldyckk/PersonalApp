@@ -1,81 +1,77 @@
 package com.example.personalapp;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBarDrawerToggle;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.view.GravityCompat;
-import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.fragment.app.Fragment;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
-import com.google.android.material.navigation.NavigationView;
-
 public class Personal extends AppCompatActivity {
 
-    Button button;
-    boolean status = false;
-    Toolbar toolbar;
-    DrawerLayout drawerLayout;
-    NavigationView navigationView;
+    Button backButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        getSupportActionBar().setElevation(0);
-
         setContentView(R.layout.personal);
-        toolbar= findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
 
-        drawerLayout = findViewById(R.id.drawer);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar,
-                R.string.open, R.string.close);
-        drawerLayout.addDrawerListener(toggle);
-        toggle.syncState();
-
-        navigationView = findViewById(R.id.navigation_view);
-        navigationView.setNavigationItemSelectedListener(this);
-
-        @Override
-        public boolean onNavigationItemSelected(@NonNull MenuItem item){
-            switch(item.getItemId()){
-                case R.id.navi_skill:
-                    Toast.makeText(this, "Ayam", Toast.LENGTH_SHORT).show();
-                    break;
-                case R.id.navi_hobbies:
-                    Toast.makeText(this, "Pepes", Toast.LENGTH_SHORT).show();
-                    break;
-                case R.id.navi_link:
-                    Toast.makeText(this, "Tahu", Toast.LENGTH_SHORT).show();
-                    break;
-            }
-            drawerLayout.closeDrawer(GravityCompat.START);
-            return true;
-        }
-
-        button = findViewById(R.id.button);
-
-        button.setOnClickListener(new View.OnClickListener() {
+        backButton = findViewById(R.id.backButton);
+        backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(!status){
-                    getSupportFragmentManager().beginTransaction()
-                            .replace(R.id.frame_layout,new FragmentA()).commit();
-                    button.setText("About Me");
-                    status = true;
-                }else{
-                    getSupportFragmentManager().beginTransaction()
-                            .replace(R.id.frame_layout,new FragmentB()).commit();
-                    button.setText("Skill");
-                    status = false;
-                }
+                onBackPressed();
             }
         });
+
     }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu){
+        getMenuInflater().inflate(R.menu.menu_layout,menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item){
+
+        int id = item.getItemId();
+        switch (id){
+            case R.id.aboutme:
+                Toast.makeText(this, "This is about me page", Toast.LENGTH_SHORT).show();
+                Intent intent0 = new Intent(this,Personal.class);
+                startActivity(intent0);
+                break;
+            case R.id.skills:
+                Toast.makeText(this, "This is my skills page", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(Personal.this,Skill.class);
+                startActivity(intent);
+                break;
+            case R.id.resume:
+                Toast.makeText(this, "This is my skills page", Toast.LENGTH_SHORT).show();
+                Intent intent1 = new Intent(this, Resume.class);
+                startActivity(intent1);
+                break;
+            case R.id.hobbies:
+                Toast.makeText(this, "This is my hobbies page", Toast.LENGTH_SHORT).show();
+                Intent intent2 = new Intent(Personal.this,Hobby.class);
+                startActivity(intent2);
+                break;
+            case R.id.logout:
+                Toast.makeText(this, "You have log out", Toast.LENGTH_SHORT).show();
+                Intent intent3 = new Intent(Personal.this,Login.class);
+                startActivity(intent3);
+                break;
+
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+
 }

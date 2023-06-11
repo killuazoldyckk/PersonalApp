@@ -11,10 +11,10 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
-         >
+        android:layout_marginBottom="10dp">
 
         <Button
+            android:id="@+id/backButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Back"
@@ -26,7 +26,6 @@
             android:drawableLeft="@drawable/ic_action_name"
             android:layout_alignParentStart="true"/>
 
-
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -34,22 +33,7 @@
             android:textSize="22dp"
             android:textStyle="bold"
             android:text="Vio Aprivia"
-            android:layout_centerInParent="true"
-
-            />
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/montserrat"
-            android:textColor="@color/grey_700"
-            android:text="Next"
-            android:outlineSpotShadowColor="@color/grey_500"
-            android:outlineAmbientShadowColor="@color/grey_500"
-            android:backgroundTint="@color/grey_500"
-            android:drawableRight="@drawable/next_icon"
-            android:layout_alignParentEnd="true"
-            />
+            android:layout_centerInParent="true"/>
 
     </RelativeLayout>
 
@@ -88,8 +72,7 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:gravity="center"
-        android:layout_marginTop="10dp"
-        >
+        android:layout_marginTop="10dp">
 
         <Space
             android:layout_width="0dp"
@@ -108,8 +91,7 @@
         <Space
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            />
+            android:layout_weight="1"/>
 
         <Button
             android:layout_width="wrap_content"
@@ -145,26 +127,35 @@
         android:orientation="vertical"
         android:background="@color/white">
 
-        <Button
-            android:id="@+id/button"
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="#dc442e"
-            android:text="About Me"
+            android:text="ABOUT ME"
+            android:gravity="center"
             android:layout_marginTop="12dp"
             android:layout_marginRight="12dp"
             android:layout_marginLeft="12dp"
-            android:textSize="16dp"
+            android:textSize="18dp"
             android:textStyle="bold"
             android:fontFamily="@font/montserrat" />
 
-        <FrameLayout
-            android:id="@+id/frame_layout"
+        <TextView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="15dp"/>
+            android:layout_height="wrap_content"
+            android:textSize="14dp"
+            android:lineSpacingExtra="2dp"
+            android:textColor="@color/grey_700"
+            android:text="I am a front-end web developer with a passion for creating visually appealing and user-friendly websites. With expertise in HTML, CSS, and JavaScript, I specialize in crafting engaging user interfaces and implementing interactive features. I have a keen eye for design and strive to deliver seamless and responsive web experiences. I am dedicated to staying up-to-date with the latest web technologies and best practices to ensure that my projects are modern, efficient, and accessible to a wide range of users. Through collaboration and attention to detail, I am committed to delivering high-quality front-end solutions that enhance the overall user experience."
+            android:layout_margin="12dp"
+            android:padding="5dp"
+            android:background="@drawable/circle_background"
+            android:layout_gravity="fill_horizontal"
+            android:fontFamily="@font/montserrat"
+            />
 
 
     </LinearLayout>
+
 
 </LinearLayout>
