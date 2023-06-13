@@ -12,19 +12,19 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Toast;
 
-public class WebUiTM extends AppCompatActivity {
+public class Portal extends AppCompatActivity {
 
     WebView webView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.web_ui_tm);
+        setContentView(R.layout.activity_portal);
 
         webView = findViewById(R.id.web_view);
 
         webView.setWebViewClient(new WebViewClient());
-        webView.loadUrl("https://www.uitm.edu.my");
+        webView.loadUrl("https://istudent.uitm.edu.my");
 
         WebSettings webSettings=webView.getSettings();
         webSettings.setJavaScriptEnabled(true);

@@ -9,7 +9,6 @@
 
         <menu>
             <item
-                android:id="@+id/myprofle"
                 android:title="My Profile"
                 app:showAsAction="never"
                 android:icon="@drawable/person">
@@ -45,11 +44,27 @@
             </item>
 
             <item
-                android:id="@+id/link"
                 android:title="Links"
                 android:icon="@drawable/baseline_link_24"
-                app:showAsAction="never"
-                />
+                app:showAsAction="never">
+
+                <menu>
+                    <item
+                        android:id="@+id/uitm"
+                        android:title="UiTM"
+                        app:showAsAction="never"
+                        />
+
+                    <item
+                        android:id="@+id/portal"
+                        android:title="iStudent Portal"
+                        app:showAsAction="never"
+                        />
+                </menu>
+
+            </item>
+
+
 
             <item
                 android:id="@+id/logout"

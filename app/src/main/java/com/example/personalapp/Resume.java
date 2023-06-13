@@ -61,6 +61,16 @@ public class Resume extends AppCompatActivity {
                 Intent intent3 = new Intent(this,Login.class);
                 startActivity(intent3);
                 break;
+            case R.id.uitm:
+                Toast.makeText(this, "This is UiTM Website", Toast.LENGTH_SHORT).show();
+                Intent intent4 = new Intent(this,WebUiTM.class);
+                startActivity(intent4);
+                break;
+            case R.id.portal:
+                Toast.makeText(this, "This is iStudent Portal", Toast.LENGTH_SHORT).show();
+                Intent intent5 = new Intent(this,Portal.class);
+                startActivity(intent5);
+                break;
 
         }
 

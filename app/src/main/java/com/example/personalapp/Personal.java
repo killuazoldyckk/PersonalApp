@@ -103,18 +103,23 @@ public class Personal extends AppCompatActivity {
                 break;
             case R.id.hobbies:
                 Toast.makeText(this, "This is my hobbies page", Toast.LENGTH_SHORT).show();
-                Intent intent2 = new Intent(Personal.this,Hobby.class);
+                Intent intent2 = new Intent(this,Hobby.class);
                 startActivity(intent2);
                 break;
             case R.id.logout:
                 Toast.makeText(this, "You have log out", Toast.LENGTH_SHORT).show();
-                Intent intent3 = new Intent(Personal.this,Login.class);
+                Intent intent3 = new Intent(this,Login.class);
                 startActivity(intent3);
                 break;
-            case R.id.link:
-                Toast.makeText(this, "This is my hobbies page", Toast.LENGTH_SHORT).show();
-                Intent intent4 = new Intent(Personal.this,WebUiTM.class);
+            case R.id.uitm:
+                Toast.makeText(this, "This is UiTM Website", Toast.LENGTH_SHORT).show();
+                Intent intent4 = new Intent(this,WebUiTM.class);
                 startActivity(intent4);
+                break;
+            case R.id.portal:
+                Toast.makeText(this, "This is iStudent Portal", Toast.LENGTH_SHORT).show();
+                Intent intent5 = new Intent(this,Portal.class);
+                startActivity(intent5);
                 break;
         }
 
