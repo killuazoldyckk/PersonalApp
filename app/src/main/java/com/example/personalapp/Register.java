@@ -16,10 +16,12 @@ import android.widget.Toast;
 
 public class Register extends AppCompatActivity implements View.OnClickListener {
 
-    TextView textView1;
+    TextView textView1, textView2;
     EditText userName,userEmail,userPassword;
     Button submitBtn;
     CheckBox checkBox;
+
+    DBHelper dbHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,8 +29,14 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
 
         setContentView(R.layout.register);
 
+        dbHelper = new DBHelper(this);
+
+
         textView1 = findViewById(R.id.textview_1);
         textView1.setOnClickListener(this);
+        textView2 = findViewById(R.id.textview_2);
+        textView2.setOnClickListener(this);
+
 
         userName = findViewById(R.id.name);
         userEmail = findViewById(R.id.email);
@@ -37,6 +45,15 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
 
 
         checkBox = findViewById(R.id.checkBox);
+
+        textView2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent2 = new Intent(Register.this,Login.class);
+                startActivity(intent2);
+                finish();
+            }
+        });
 
         submitBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -49,6 +66,8 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
                     Toast.makeText(getApplicationContext(), "Please fill all the fields", Toast.LENGTH_SHORT).show();
                 }
                 else{
+                    dbHelper.registerUser(name, email, password);
+                    Toast.makeText(Register.this, "Registration successful!", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(Register.this,Login.class);
                     intent.putExtra("NAME",name);
                     intent.putExtra("EMAIL",email);

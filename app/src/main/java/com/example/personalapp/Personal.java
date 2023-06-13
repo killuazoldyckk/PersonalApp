@@ -5,6 +5,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -15,20 +16,29 @@ import android.widget.Toast;
 public class Personal extends AppCompatActivity {
 
     Button backButton;
+    Intent intent = null, chooser = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.personal);
 
-        backButton = findViewById(R.id.backButton);
-        backButton.setOnClickListener(new View.OnClickListener() {
+        Button button = findViewById(R.id.launch_email);
+
+        button.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                onBackPressed();
+            public void onClick(View view) {
+                intent = new Intent(Intent.ACTION_SEND);
+                intent.setData(Uri.parse("mailto:"));
+                String[] to={"vioapriviablah@gmail.com"};
+                intent.putExtra(Intent.EXTRA_EMAIL, to);
+                intent.putExtra(Intent.EXTRA_SUBJECT, "First Email");
+                intent.putExtra(Intent.EXTRA_TEXT, "Hi Vio!, i'm one of your fans from ...");
+                intent.setType("message/rfc822");
+                chooser = Intent.createChooser(intent, "Send Email");
+                startActivity(chooser);
             }
         });
-
     }
 
     @Override
@@ -67,7 +77,11 @@ public class Personal extends AppCompatActivity {
                 Intent intent3 = new Intent(Personal.this,Login.class);
                 startActivity(intent3);
                 break;
-
+            case R.id.link:
+                Toast.makeText(this, "This is my hobbies page", Toast.LENGTH_SHORT).show();
+                Intent intent4 = new Intent(Personal.this,WebUiTM.class);
+                startActivity(intent4);
+                break;
         }
 
         return super.onOptionsItemSelected(item);

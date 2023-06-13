@@ -18,13 +18,16 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
 
     TextView textView1, textView2;
     EditText userEmail,userPassword;
-    Button submitBtn;
+    Button loginBtn;
+    DBHelper dbHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.login);
+
+        dbHelper = new DBHelper(this);
 
         textView1 = findViewById(R.id.textview_1);
         textView1.setOnClickListener(this);
@@ -33,9 +36,9 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
 
         userEmail = findViewById(R.id.email);
         userPassword = findViewById(R.id.password);
-        submitBtn = findViewById(R.id.submit_btn);
+        loginBtn = findViewById(R.id.login_btn);
 
-        submitBtn.setOnClickListener(new View.OnClickListener() {
+        loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 String email = userEmail.getText().toString().trim();
@@ -45,11 +48,17 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
                     Toast.makeText(getApplicationContext(), "Please fill all the fields", Toast.LENGTH_SHORT).show();
                 }
                 else{
-                    Intent intent = new Intent(Login.this,Personal.class);
-                    intent.putExtra("EMAIL",email);
-                    intent.putExtra("PASSWORD",password);
-                    startActivity(intent);
-                    finish();
+                    boolean loginSuccessful = dbHelper.loginUser(email, password);
+                    if (loginSuccessful) {
+                        Toast.makeText(Login.this, "Login successful!", Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(Login.this,Personal.class);
+                        intent.putExtra("EMAIL",email);
+                        intent.putExtra("PASSWORD",password);
+                        startActivity(intent);
+                        finish();
+                    } else {
+                        Toast.makeText(Login.this, "Invalid username or password!", Toast.LENGTH_SHORT).show();
+                    }
                 }
             }
         });
