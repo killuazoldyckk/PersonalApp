@@ -15,28 +15,62 @@ import android.widget.Toast;
 
 public class Personal extends AppCompatActivity {
 
-    Button backButton;
-    Intent intent = null, chooser = null;
+    Intent intent3 = null, chooser3 = null;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.personal);
 
-        Button button = findViewById(R.id.launch_email);
+        Button button1 = findViewById(R.id.launch_dial);
+        Button button2 = findViewById(R.id.launch_message);
+        Button button3 = findViewById(R.id.launch_email);
 
-        button.setOnClickListener(new View.OnClickListener() {
+        button1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                intent = new Intent(Intent.ACTION_SEND);
-                intent.setData(Uri.parse("mailto:"));
+                String phoneNumber = "01164583396";
+
+                Intent intent1 = new Intent(Intent.ACTION_DIAL);
+
+                Uri phoneUri = Uri.parse("tel:" + phoneNumber);
+                intent1.setData(phoneUri);
+
+                startActivity(intent1);
+            }
+        });
+
+        button2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                String phoneNumber = "01164583396";
+                String message = "Hello Vio! I want to offer business cooperation, if you interested please reply this message or call the number above. Sincerly, ....";
+
+                Intent intent2 = new Intent(Intent.ACTION_VIEW);
+
+                intent2.setData(Uri.parse("sms:" + phoneNumber));
+
+                intent2.putExtra("sms_body", message);
+
+
+                startActivity(intent2);
+            }
+        });
+
+        button3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                intent3 = new Intent(Intent.ACTION_SEND);
+                intent3.setData(Uri.parse("mailto:"));
                 String[] to={"vioapriviablah@gmail.com"};
-                intent.putExtra(Intent.EXTRA_EMAIL, to);
-                intent.putExtra(Intent.EXTRA_SUBJECT, "First Email");
-                intent.putExtra(Intent.EXTRA_TEXT, "Hi Vio!, i'm one of your fans from ...");
-                intent.setType("message/rfc822");
-                chooser = Intent.createChooser(intent, "Send Email");
-                startActivity(chooser);
+                intent3.putExtra(Intent.EXTRA_EMAIL, to);
+                intent3.putExtra(Intent.EXTRA_SUBJECT, "First Email");
+                intent3.putExtra(Intent.EXTRA_TEXT, "Hello Vio! I want to offer business cooperation, if you interested please reply this message or call the number above. Sincerly, ....");
+                intent3.setType("message/rfc822");
+                chooser3 = Intent.createChooser(intent3, "Send Email");
+                startActivity(chooser3);
             }
         });
     }
